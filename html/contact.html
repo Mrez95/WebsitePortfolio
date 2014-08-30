@@ -1,0 +1,838 @@
+<html><head>
+        <title>Tianyi Zhang</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <!--<link href="css/main.css" rel="stylesheet" type="type/css">-->
+        
+        <link href="../css/refined-style.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" type="text/css" media="all" href="../css/portfolio.css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet" type="text/css">
+        <link href="../css/scroll.css" rel="stylesheet" type="text/css">
+        <link href="../css/fontello.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>      
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
+        <script type="text/javascript" src="../js/portfolio/jquery.tipsy-min.js"></script>
+        <script type="text/javascript" src="../js/portfolio/jquery.isotope.min.js"></script>
+        <script type="text/javascript" src="../js/portfolio/jquery.prettyPhoto-min.js"></script>
+        <script type="text/javascript" src="../js/easing.js"></script>
+        <script src="../js/collapse.js" type="text/javascript"></script>
+        <script src="../js/typer.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../js/portfolio/tie-scripts-min.js"></script>
+
+        <script>
+            var previousId = "";
+            /* <![CDATA[ */
+            var tie = {};
+            /* ]]> */
+            $(document).ready(function() {
+                typerColor = 'rgba(241,194,214,0.6)'; // sends to typer.js
+
+                var tempHeight = $(window).height() - $('.container').height();
+                $('#footer').css("height", tempHeight);
+                $('.blurred-background').css("height", tempHeight);
+
+                setTimeout(function() {
+                    $('[data-typer-targets]').typer();
+                    $.typer.options.typerInterval = 3000;
+                }, 2000);
+
+                position_h_center("scroll_down");
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    $(".filter").hide();
+                    $("#about_wrapper img#pajo").show(); //TODO!
+                } else {
+                    if ($(window).width() > 998) {
+                        setTimeout(function() {
+                            setInterval('animate_scroll_button()', 3000);
+                        }, 0) // time before 1st trigger, might want delay if animations
+                    }
+                    ;
+                }
+            });
+
+            function position_h_center(el) {
+                var _width = $("#" + el).parent().outerWidth();
+                var _el_width = $("#" + el).width();
+                $("#" + el).css("left", ((_width - _el_width) / 2) + "px");
+            }
+            function animate_scroll_button() {
+                $("#scroll_down").animate({
+                    bottom: "50px"
+                }, 1000, function() {
+                    $("#scroll_down").animate({
+                        bottom: "20px"
+                    }, {
+                        duration: 2000,
+                        easing: "easeOutBounce"
+                    });
+                });
+            }
+
+            function hide_menu() {
+                if ($("#navbar").hasClass("display_nav")) {
+                    $("#navbar").removeClass("display_nav");
+                    $("#navbar").addClass("hidden_nav");
+                    $("#navbar").css({opacity: '0'});
+                }
+            }
+
+            function show_menu() {
+                if ($("#navbar").hasClass("hidden_nav")) {
+
+                    $("#navbar").removeClass("hidden_nav");
+                    $('#navbar')
+                            .delay(420) // NOTE: fixes safari nav dropdown bug
+                            .queue(function() {
+                                $(this).css({opacity: '1'});
+                                $("#navbar").addClass("display_nav");
+                                $(this).dequeue();
+                            });
+                }
+            }
+
+            $(function() { // page scrolling
+                $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            });
+
+            $(window).resize(function() {
+                position_h_center("scroll_down");
+                var tempHeight = $(window).height() - $('.container').height();
+                $('#footer').css("height", tempHeight);
+                $('.blurred-background').css("height", tempHeight);
+            });
+
+            $('nav a').on('click', function() {
+
+                var scrollAnchor = $(this).attr('data-scroll'),
+                        scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top - 28;
+
+                $('body,html').animate({
+                    scrollTop: scrollPoint
+                }, 500);
+
+                return false;
+
+            })
+
+            $(window).scroll(function() {
+                var currentId = $("li.current").attr('id');
+                if ($(this).scrollTop() + 100 >= $('div[data-anchor="home"]').offset().top && $(this).scrollTop() < $('div[data-anchor="about"]').offset().top - 100) {
+                    hide_menu();
+                    if (!$('nav a#home').hasClass('active')) {
+                        $('nav a#about').removeClass('active');
+                        $('nav a#portfolio').removeClass('active');
+                        $('nav a#contact').removeClass('active');
+                        //$('nav a#home').addClass('active');
+                    }
+                    if (!$('nav li#home').hasClass('current')) {
+                        $('nav li#about').removeClass('current');
+                        $('nav li#portfolio').removeClass('current');
+                        $('nav li#contact').removeClass('current');
+                        $('nav li#home').addClass('current');
+                    }
+                }
+                if ($(this).scrollTop() + 100 >= $('div[data-anchor="about"]').offset().top && $(this).scrollTop() < $('div[data-anchor="portfolio"]').offset().top) {
+                    show_menu();
+                    if (!$('nav a#about').hasClass('active')) {
+                        $('nav a#home').removeClass('active');
+                        $('nav a#portfolio').removeClass('active');
+                        $('nav a#contact').removeClass('active');
+                        $('nav a#about').addClass('active');
+                    }
+                    if (!$('nav li#about').hasClass('current')) {
+                        $('nav li#home').removeClass('current');
+                        $('nav li#portfolio').removeClass('current');
+                        $('nav li#contact').removeClass('current');
+                        $('nav li#about').addClass('current');
+                    }
+                }
+                if ($(this).scrollTop() >= $('div[data-anchor="portfolio"]').offset().top && $(this).scrollTop() < $('div[data-anchor="contact"]').offset().top - 60) {
+                    if (!$('nav a#portfolio').hasClass('active')) {
+                        $('nav a#home').removeClass('active');
+                        $('nav a#about').removeClass('active');
+                        $('nav a#contact').removeClass('active');
+                        $('nav a#portfolio').addClass('active');
+                    }
+                    if (!$('nav li#portfolio').hasClass('current')) {
+                        $('nav li#home').removeClass('current');
+                        $('nav li#about').removeClass('current');
+                        $('nav li#contact').removeClass('current');
+                        $('nav li#portfolio').addClass('current');
+                    }
+                }
+                if ($(this).scrollTop() + 60 >= $('div[data-anchor="contact"]').offset().top) {
+                    if (!$('nav a#contact').hasClass('active')) {
+                        $('nav a#home').removeClass('active');
+                        $('nav a#about').removeClass('active');
+                        $('nav a#portfolio').removeClass('active');
+                        $('nav a#contact').addClass('active');
+                    }
+                    if (!$('nav li#contact').hasClass('current')) {
+                        $('nav li#home').removeClass('current');
+                        $('nav li#about').removeClass('current');
+                        $('nav li#portfolio').removeClass('current');
+                        $('nav li#contact').addClass('current');
+                    }
+                }
+
+                $("nav a.active").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+                    setTimeout(function() {
+                        if ($("li.current a").hasClass("active")) {
+                            $("li.current a").removeClass('active');
+                        }
+                    }, 800)
+                });
+                previousId = currentId;
+                var sT = $(this).scrollTop() + 75;
+                if ($(window).height() - sT < 600) {
+                    $("#default-nav").css("opacity", ($(window).height() - sT) / 600).show();
+                } else {
+                    $("#default-nav").css("opacity", 1).show();
+                }
+            });
+
+            $(window).load(function() {
+                document.getElementById("loading").style.display = "none";
+
+                if ($(window).width() > 768) {
+                    $('.name-container').css(
+                            {
+                                position: 'absolute',
+                                left: ($(window).width() - $('.name-container').outerWidth()) / 2,
+                                top: ($(window).height() - $('.name-container').outerHeight()) / 2,
+                                opacity: 1
+                            });
+                }
+                else {
+                    $('.name-container').css(
+                            {
+                                position: 'relative',
+                                top: 0,
+                                left: 0
+                            });
+                }
+
+                // future precautions based on varying screen size (tablets/phone)
+                $(window).resize(function()
+                {
+                    if ($(window).width() > 768) {
+                        $('.name-container').css(
+                                {
+                                    position: 'absolute',
+                                    left: ($(window).width() - $('.name-container').outerWidth()) / 2,
+                                    top: (($(window).height() - $('.name-container').outerHeight()) / 2) - 10,
+                                    opacity: 1
+                                });
+                    }
+                    else {
+                        $('.name-container').css(
+                                {
+                                    position: 'relative',
+                                    top: 0,
+                                    left: 0
+                                });
+                    }
+                });
+
+                // call resize` to center elements
+                $(window).resize();
+            });
+
+        </script>
+        <style type="text/css">
+            .filter{
+                position: absolute; 
+                top: 0px; 
+                left: 0px;
+                width: 100%; 
+                height: 100%;
+                z-index: 1;
+                background: url(../images/filter1.png) top left repeat;
+            }
+            #navbar{
+                opacity:0;
+                background-color: rgba(0,0,0,0.6) !important;
+                -webkit-transform:translateY(-50px);
+                -moz-transform:translateY(-50px);
+                transform:translateY(-50px);
+
+            }
+            .hidden_nav {
+                opacity:0;
+                -webkit-transform:translateY(-50px);
+                -moz-transform:translateY(-50px);
+                transform:translateY(-50px);
+                transition-duration: 0.6s;
+                transition-timing-function: ease-in-out;
+            }
+            .display_nav { 
+                -webkit-transform:translateY(0px) !important;
+                -moz-transform:translateY(0px) !important;
+                transform:translateY(0px) !important;
+                transition-duration: 0.6s !important;
+                transition-timing-function: ease-in-out !important;
+            }
+            li.current{
+                background: rgba(241,194,214,0.4) !important;
+                -webkit-transition: background 1s ease 0.7s !important;
+                -moz-transition: background 1s ease 0.7s !important;
+                transition: background 1s ease 0.7s !important;
+            }
+            #loading
+            {
+                position: fixed;
+                left: 0px; 
+                right: 0px; 
+                top: 0px; 
+                bottom: 0px; 
+                background-color: white;
+                overflow:hidden;
+                z-index: 999999; /* Higher than anything else in the document */
+            }
+
+            body.background {
+                background-size: 0%;
+                background-repeat:no-repeat;
+                padding: 0px;
+                margin: 0px;
+                background-position: center center;
+                height: 100%;
+                background-color: #000;
+                background-attachment: fixed;
+            }
+
+            .box {
+                width: 120px;
+                height: 50px;
+                position: relative;
+                background: rgba(255,255,255,1);
+                display: inline-block;
+                margin: 0 10px;
+                cursor: pointer;
+                color: #2c3e50;
+                box-shadow: inset 0 0 0 3px #2c3e50;
+                -webkit-transition: background 0.4s 0.5s;
+                transition: background 0.4s 0.5s;
+            }
+
+            .box svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .box svg line {
+                stroke-width: 2;
+                stroke: rgba(255,255,255,0.2); //box color
+                fill: none;
+                -webkit-transition: all .8s ease-in-out;
+                transition: all .8s ease-in-out;
+            }
+
+            .box svg line.top,
+            .box svg line.bottom {
+                stroke-dasharray: 130 100 ; 
+            }
+
+            .box svg line.left,
+            .box svg line.right {
+                stroke-dasharray: 60 30;
+            }
+
+            /* Frame */
+            .demo-3 .box {
+                background: rgba(0,0,0,0);
+                color: #fff;
+                box-shadow: none;
+                -webkit-transition: background 0.3s;
+                transition: background 0.3s;
+            }
+
+            .demo-3 .box:hover {
+                background: rgba(0,0,0,0.2);
+            }
+
+            .demo-3 .box h3,
+            .demo-3 .box span {
+                -webkit-transition: none;
+                transition: none;
+            }
+
+            .demo-3 .box svg line {
+                -webkit-transition: all .5s;
+                transition: all .5s;
+            }
+
+            .demo-3 .box:hover svg line {
+                stroke-width: 8;
+                stroke: rgba(241,194,214,0.4);
+            }
+
+            .box h5 {
+                -webkit-transition: color 0.5s;
+                transition: color 0.5s;
+            }
+            .demo-3 .box:hover h5 {
+                color: rgba(241,194,214,0.8);
+                -webkit-transition: all .6s ;
+                transition: all .6s;
+                -webkit-transform: scale(0.93);
+                transform: scale(0.93);
+            }
+
+            .demo-3 .box:hover svg line.top {
+                -webkit-transform: translateX(-120px);
+                transform: translateX(-120px);
+            }
+
+            .demo-3 .box:hover svg line.bottom {
+                -webkit-transform: translateX(120px);
+                transform: translateX(120px);
+            }
+
+            .demo-3 .box:hover svg line.left {
+                -webkit-transform: translateY(50px);
+                transform: translateY(50px);
+            }
+
+            .demo-3 .box:hover svg line.right {
+                -webkit-transform: translateY(-50px);
+                transform: translateY(-50px);
+            }
+
+            .box:hover svg line.left {
+                -webkit-transform: translateY(100px);
+                transform: translateY(100px);
+            }
+
+            .box:hover svg line.right {
+                -webkit-transform: translateY(-100px);
+                transform: translateY(-100px);
+            }
+
+            section.demo-3 {
+                padding: 4em 2em;
+                text-align: center;
+            }
+
+            #nav-points a {
+                text-decoration:none
+            }
+            #nav-points a:hover {
+                color:rgba(255,255,255,1);
+                -webkit-transition:-webkit-transform .3s, opacity .2s;
+                -moz-transition:-moz-transform .3s, opacity .2s;
+                transition:transform .3s, opacity .2s
+            }
+            #nav-points a::after, #nav-points a::before {
+                display:inline-block;
+                opacity:0;
+                -webkit-transition:-webkit-transform .3s, opacity .2s;
+                -moz-transition:-moz-transform .3s, opacity .2s;
+                transition:transform .3s, opacity .2s
+            }
+            #nav-points a::before{
+                margin-right:10px;
+                content:'{';
+                -webkit-transform:translateX(20px);
+                -moz-transform:translateX(20px);
+                transform:translateX(20px);
+            }
+            #nav-points a::after {
+                margin-left:10px;
+                content:'}';
+                -webkit-transform:translateX(-20px);
+                -moz-transform:translateX(-20px);
+                transform:translateX(-20px);
+            }
+            #nav-points{
+                display:inline-block;
+                color:rgba(241,194,214,1) !important;
+                opacity:1!important;
+                -webkit-transform:translateX(0px)!important;
+                -moz-transform:translateX(0px)!important;
+                transform:translateX(0px)!important
+            }
+            #nav-points a:hover::after, #nav-points a:hover::before, a.active::before, a.active::after {
+                color:rgba(241,194,214,1) !important;
+                opacity:1 !important;
+                -webkit-transform:translateX(0px) !important;
+                -moz-transform:translateX(0px) !important;
+                transform:translateX(0px) !important;
+            } 
+            .image {
+                position: relative;
+                left: 0px;      
+                height: 100%;
+                background-color:white;
+                background-position: 50% 50%;
+                background-size: cover;
+                background-attachment: scroll;
+                text-align: center;
+            }
+            video { 
+                min-width: 100% ; min-height: 100%;
+                margin: auto;
+                width:100%;
+                position: fixed;
+                z-index: 0;
+                top: 0; 
+                left: 0;
+                bottom: 0; 
+                right: 0;
+
+            }
+            .text {
+                position: fixed;    
+                bottom: 20px;
+                left:50%;
+                margin-left: -44px;
+            }
+            #postcard{
+                position:relative;
+                height:70%; 
+                width:70%;
+                margin:auto;
+                border-style:solid;
+                border-color:white;
+                border-width: 2px;
+                border-top: 3px solid white;
+
+                /*                background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(transparent));
+                                background-image: -webkit-linear-gradient(white, transparent);
+                                background-image:
+                                    -moz-linear-gradient(white, transparent),
+                                    -moz-linear-gradient(white, transparent);
+                                background-image:
+                                    -o-linear-gradient(white, transparent),
+                                    -o-linear-gradient(white, transparent);
+                                background-image: 
+                                    linear-gradient(white, transparent),
+                                    linear-gradient(white, transparent);
+                                -moz-background-size: 3px 100%;
+                                background-size: 3px 100%;
+                                background-position: 0 0, 100% 0;
+                                background-repeat: no-repeat; */
+
+                //background-color:rgba(0,0,0,0.3);
+            }
+            #inner-border{
+                height:88%;
+                width:auto;
+                margin:3%;
+                border-style:solid; // play around
+                border-color:white;
+                color: white;
+                border-width: 2px;
+                height:88%;
+                width:auto;
+                margin:3%;
+
+                /*                border-bottom: 1px solid white;
+                                background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(white));
+                                background-image: -webkit-linear-gradient(white, transparent);
+                                background-image:
+                                    -moz-linear-gradient(white, transparent),
+                                    -moz-linear-gradient(white, transparent);
+                                background-image:
+                                    -o-linear-gradient(white, transparent),
+                                    -o-linear-gradient(white, transparent);
+                                background-image: 
+                                    linear-gradient(transparent, white),
+                                    linear-gradient(transparent, white);
+                                -moz-background-size: 3px 100%;
+                                background-size: 3px 100%;
+                                background-position: 0 0, 100% 0;
+                                background-repeat: no-repeat; */
+            }
+
+            #about-me{
+                float:left;
+                height:100%;
+                width:40%;
+                border-style:solid;
+                border-color:white;
+                border-width: 0px;
+                border-style: solid;
+                -webkit-border-image: 
+                    -webkit-gradient(linear, 0 100%, 0 0, from(white), to(rgba(0, 0, 0, 0))) 1 100%;
+                -webkit-border-image: 
+                    -webkit-linear-gradient(bottom, white, rgba(0, 0, 0, 0)) 1 100%;
+                -moz-border-image:
+                    -moz-linear-gradient(bottom, white, rgba(0, 0, 0, 0)) 1 100%;  
+                -o-border-image:
+                    -o-linear-gradient(bottom, white, rgba(0, 0, 0, 0)) 1 100%;
+                border-image:
+                    linear-gradient(to top, white, rgba(0, 0, 0, 0)) 1 100%
+            }
+            #contact-me{
+                float:right;
+                height:100%;
+                width:60%;
+                border-style:groove;
+                border-color:white;
+                border-top-width: 0px;
+                border-right-width: 0px;
+                border-bottom-width: 0px;
+                border-left-width: 2px;
+                border-image: linear-gradient(to top, white, rgba(0, 0, 0, 0)) 1 100%;
+            }
+            #contact_layer {
+                position: absolute; right: 0; bottom: 0;
+                min-width: 100%; min-height: 100%;
+                width: auto; height: auto; z-index: 0;
+                background: url(../images/filter1.png) bottom center repeat;
+            }
+        </style>
+    </head>
+
+    <body class="background">
+        <div style="display: none" id="loading">&nbsp;</div>
+        <script type="text/javascript">
+            document.getElementById("loading").style.display = "block";
+        </script> 
+
+        <nav class="navbar navbar-inverse navbar-fixed-top hidden_nav" id="navbar" style="z-index:999999;">
+            <div class="container" style="position:relative;height:100%; z-index:-2000;margin-right:21px">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#" >Eddie Tianyi Zhang</a>
+                </div>
+                <!--top toolbar menu-->
+                <div class="collapse navbar-collapse"> 
+                    <ul id="nav-points" class="nav navbar-nav navbar-right">
+                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:9px;padding-right:9px">Home</a></li>
+                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:9px;padding-right:9px">About</a></li>
+                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:9px;padding-right:9px">Portfolio</a></li>
+                        <!--CHANGE: make it embedded emailing-->
+                        <li id="contact"><a id="contact" href="#footer" style="padding-left:9px;padding-right:9px">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:999999;background-color: rgba(0,0,0,0.0) !important; " >
+            <div class="container" style="position:relative;height:100%; z-index:-2000;margin-right:21px">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#" >Eddie Tianyi Zhang</a>
+                </div>
+                <!--top toolbar menu-->
+                <div class="collapse navbar-collapse"> 
+                    <ul id="nav-points" class="nav navbar-nav navbar-right">
+                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:9px;padding-right:9px">Home</a></li>
+                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:9px;padding-right:9px">About</a></li>
+                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:9px;padding-right:9px">Portfolio</a></li>
+                        <!--CHANGE: make it embedded emailing-->
+                        <li id="contact"><a id="contact" href="#footer" style="padding-left:9px;padding-right:9px">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--        <div class="blurred-background " style="background-video: url('blueblur.png'); background-attachment: fixed; background-repeat: no-repeat;">-->
+        <div class="filter"></div>  
+        <video preload="auto" autoplay="true" loop="loop" muted="muted" > 
+            <source src="../background/atmosphere_8_blur.mov" type="video/mp4"> 
+        </video>                
+
+        <div id="_home" data-anchor="home" style="position:relative;height:100%; margin-bottom:0px; border-bottom:0px; background-color: rgba(0,0,0,0.3)">
+            <main class="name-container" style="position: absolute; left: 299px; top: 94px; opacity: 1; margin-top:30px">
+
+                <img src="../images/logo.svg" alt="logo" class="logo" style="position:relative; z-index:3;">
+                <hr>
+                <h1 style="position:relative; z-index:3; color:rgba(255,255,255,1);"> Eddie Tianyi <span style="font-weight: 300">Zhang</span></h1>
+                <h2 style="position:relative; z-index:3; color:rgba(255,255,255,0.8);" data-typer-targets="industrial design · front-end development,product design · front-end development,ui / ux design · front-end development, ui / ux design · mobile development, ui / ux design · web development, ui / ux design · front-end development"> ui / ux design · front-end development</h2>
+                <hr>
+
+                <section class="demo-3" style="padding-top:0px">
+                    <div class="box" style="margin:2px; z-index:3">
+                        <a class="scroll" href="_______.html" style="text-decoration:none; color:rgba(255,255,255,0.7);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                            <line class="top" x1="0" y1="0" x2="360" y2="0"></line>
+                            <line class="left" x1="0" y1="50" x2="0" y2="-100"></line>
+                            <line class="bottom" x1="120" y1="50" x2="-240" y2="50"></line>
+                            <line class="right" x1="120" y1="0" x2="120" y2="150"></line>
+                            </svg>
+                            <h5>About</h5>
+                        </a>
+
+                    </div>
+                    <div class="box" style="margin:2px;z-index:3">
+                        <a href="portfolio.html" style="text-decoration:none; color:rgba(255,255,255,0.7);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                            <line class="top" x1="0" y1="0" x2="360" y2="0"></line>
+                            <line class="left" x1="0" y1="50" x2="0" y2="-100"></line>
+                            <line class="bottom" x1="120" y1="50" x2="-240" y2="50"></line>
+                            <line class="right" x1="120" y1="0" x2="120" y2="150"></line>
+                            </svg>
+                            <h5>Portfolio</h5>
+                        </a>
+
+                    </div>
+                    <div class="box" style="margin:2px;z-index:3">
+                        <a class="scroll" href="#footer" style="text-decoration:none; color:rgba(255,255,255,0.7);">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                            <line class="top" x1="0" y1="0" x2="360" y2="0"></line>
+                            <line class="left" x1="0" y1="50" x2="0" y2="-100"></line>
+                            <line class="bottom" x1="120" y1="50" x2="-240" y2="50"></line>
+                            <line class="right" x1="120" y1="0" x2="120" y2="150"></line>
+                            </svg>
+                            <h5>Contact</h5>
+                        </a>
+                    </div>
+
+                </section>
+
+            </main>
+            <a href="#_about" data-scroll="about" id="scroll_down" style="position: absolute"><span>Scroll</span><i class="icon-dol"></i></a>
+        </div>
+
+
+        <!--<div id="_about" data-anchor="about" class="image" style="margin-bottom:0px"> hi HELLO2 </div>-->
+        <div id="_about" data-anchor="about" class="image" style="margin-bottom:0px"> 
+            <div id="main-content" class="container" style=" min-width:100%">
+                <div id="portfolio-grid" class="da-thumbs isotope" style="position: relative; overflow: hidden; min-width:100%; height: 1090px; display: block;">        				
+                    <div class="portfolio-item  folio-36 isotope-item" style="width: 355px; position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 0px, 0px);"> 							
+                        <a href="#pfolio/2829" rel="2829"><img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2014/08/living_simple-480x295.png" data-lazy-type="image" data-lazy-src="http://www.iamsunnywang.com/wp-content/uploads/2014/08/living_simple-480x295.png" class="lazy attachment-folio-thumb2 wp-post-image data-lazy-ready" alt="living_simple" style="display: inline;"><noscript>&lt;img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2014/08/living_simple-480x295.png" class="attachment-folio-thumb2 wp-post-image" alt="living_simple" /&gt;</noscript>			<div class="da-animate da-slideFromBottom" style="display: block;">
+                                <span>
+                                    <h2>Living Simple</h2>
+                                    <h3>App					</h3>
+                                </span>
+                            </div>
+                        </a>
+                    </div>					
+                    <div class="portfolio-item  folio-35 isotope-item" style="width: 355px; position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(355px, 0px, 0px);"> 							
+                        <a href="#pfolio/2786" rel="2786"><img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2014/06/awesome_light-480x295.png" data-lazy-type="image" data-lazy-src="http://www.iamsunnywang.com/wp-content/uploads/2014/06/awesome_light-480x295.png" class="lazy attachment-folio-thumb2 wp-post-image data-lazy-ready" alt="awesome_light" style="display: inline;"><noscript>&lt;img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2014/06/awesome_light-480x295.png" class="attachment-folio-thumb2 wp-post-image" alt="awesome_light" /&gt;</noscript>			<div class="da-animate da-slideFromTop" style="display: block;">
+                                <span>
+                                    <h2>Visual.ly Interactive</h2>
+                                    <h3>Web					</h3>
+                                </span>
+                            </div>
+                        </a>
+                    </div>					
+                    <div class="portfolio-item  folio-35 isotope-item" style="width: 355px; position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(710px, 0px, 0px);"> 							
+                        <a href="#pfolio/2714" rel="2714"><img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2014/04/thoth_light1-480x295.png" data-lazy-type="image" data-lazy-src="http://www.iamsunnywang.com/wp-content/uploads/2014/04/thoth_light1-480x295.png" class="lazy attachment-folio-thumb2 wp-post-image data-lazy-ready" alt="thoth_light" style="display: inline;"><noscript>&lt;img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2014/04/thoth_light1-480x295.png" class="attachment-folio-thumb2 wp-post-image" alt="thoth_light" /&gt;</noscript>			<div class="da-animate da-slideFromBottom" style="display: block;">
+                                <span>
+                                    <h2>Thoth</h2>
+                                    <h3>Web					</h3>
+                                </span>
+                            </div>
+                        </a>
+                    </div>					
+                    <div class="portfolio-item  folio-36 folio-26 folio-44 folio-45 isotope-item" style="width: 355px; position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 218px, 0px);"> 							
+                        <a href="#pfolio/2016" rel="2016"><img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2013/05/Oliver_light-480x295.png" data-lazy-type="image" data-lazy-src="http://www.iamsunnywang.com/wp-content/uploads/2013/05/Oliver_light-480x295.png" class="lazy attachment-folio-thumb2 wp-post-image data-lazy-ready" alt="" style="display: inline;"><noscript>&lt;img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2013/05/Oliver_light-480x295.png" class="attachment-folio-thumb2 wp-post-image" alt="" /&gt;</noscript>			<div class="da-animate da-slideFromTop" style="display: block;">
+                                <span>
+                                    <h2>Oliver</h2>
+                                    <h3>App / Storytelling / UX Research / Video					</h3>
+                                </span>
+                            </div>
+                        </a>
+                    </div>					
+                    <div class="portfolio-item  folio-44 folio-35 isotope-item" style="width: 355px; position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(355px, 218px, 0px);"> 							
+                        <a href="#pfolio/1943" rel="1943"><img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2013/05/breeze_light-480x295.png" data-lazy-type="image" data-lazy-src="http://www.iamsunnywang.com/wp-content/uploads/2013/05/breeze_light-480x295.png" class="lazy attachment-folio-thumb2 wp-post-image data-lazy-ready" alt="" style="display: inline;"><noscript>&lt;img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2013/05/breeze_light-480x295.png" class="attachment-folio-thumb2 wp-post-image" alt="" /&gt;</noscript>			<div class="da-slideFromLeft da-animate da-slideLeft" style="display: block;">
+                                <span>
+                                    <h2>Breeze</h2>
+                                    <h3>UX Research / Web					</h3>
+                                </span>
+                            </div>
+                        </a>
+                    </div>								
+                    <div class="portfolio-item  folio-33 folio-38 folio-35 isotope-item" style="width: 355px; position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(355px, 436px, 0px);"> 							
+                        <a href="#pfolio/1656" rel="1656"><img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2012/12/Xmas_light-480x295.png" data-lazy-type="image" data-lazy-src="http://www.iamsunnywang.com/wp-content/uploads/2012/12/Xmas_light-480x295.png" class="lazy attachment-folio-thumb2 wp-post-image data-lazy-ready" alt="" style="display: inline;"><noscript>&lt;img width="480" height="295" src="http://www.iamsunnywang.com/wp-content/uploads/2012/12/Xmas_light-480x295.png" class="attachment-folio-thumb2 wp-post-image" alt="" /&gt;</noscript>			<div class="da-animate da-slideFromLeft" style="display: block;">
+                                <span>
+                                    <h2>Merry Christmas</h2>
+                                    <h3>Dev / Gaming / Web					</h3>
+                                </span>
+                            </div>
+                        </a>
+                    </div>									        
+                </div>
+            </div><!-- .container /--></div>
+        <div id="_portfolio" data-anchor="portfolio" class="image" style="margin-bottom:0px"> hi HELLO2 </div>
+
+
+        <!--hidden-sm hidden-xs-->
+
+        <div data-anchor="contact" id ="footer" style="position:relative; margin-bottom:0px; border-bottom:0px; background-color: rgba(0,0,0,0.3)">
+            <div id="contact_layer"></div>
+            <div class="blurred-background" >
+                <div class="container" id="physical-footer">
+                    <h4 class="text-center margin-top-lg" style="position:relative;margin-top:3%;margin-bottom:5%; z-index:4">Intrigued?</h4>
+                    <div id="postcard">
+                        <div id="inner-border">
+                            <div id="about-me">
+                                <h4 style="text-align:center">Contact Me!</h4>
+                            </div>
+                            <div id="contact-me">
+                                <form name="input" action="../php/contact.php" method="post">
+                                    From: <input type="text" name="client"><br>
+                                    Return Address: <input type="text" name="address"><br>
+                                    Message: <input type ="text" name="message"><br>
+                                    <input type="submit" value="Send Greetings">
+                                </form> 
+                            </div>
+                        </div>
+                    </div>   
+                </div>  
+            </div>
+        </div>
+        <div id="moretext-mobile" class="visible-xs visible-sm hidden">
+            <div>
+                <p class="mobile-subtext"></p>
+                <p class="lesstext">less</p>
+            </div>
+        </div>
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            (function() {
+                try {
+                    var s, a, i, j, r, c, l = document.getElementsByTagName("a"), t = document.createElement("textarea");
+                    for (i = 0; l.length - i; i++) {
+                        try {
+                            a = l[i].getAttribute("href");
+                            if (a && "www.cloudflare.com/email-protection" == a.substr(7, 35)) {
+                                s = '';
+                                j = 43;
+                                r = parseInt(a.substr(j, 2), 16);
+                                for (j += 2; a.length - j && a.substr(j, 1) != 'X'; j += 2) {
+                                    c = parseInt(a.substr(j, 2), 16) ^ r;
+                                    s += String.fromCharCode(c);
+                                }
+                                j += 1;
+                                s += a.substr(j, a.length - j);
+                                t.innerHTML = s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                                l[i].setAttribute("href", "mailto:" + t.value);
+                            }
+                        } catch (e) {
+                        }
+                    }
+                } catch (e) {
+                }
+            })();
+            /* ]]> */
+        </script>
+        <script type="text/javascript" src="../js/portfolio/tie-portfolio-min.js"></script>
+    </body></html>

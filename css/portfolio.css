@@ -1,0 +1,126 @@
+
+/* ---------------------------------------------
+ isotope
+------------------------------------------------ */	
+.isotope-item {
+  z-index: 2;
+}
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:         top, left, opacity;
+          transition-property:         transform, opacity;
+}
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
+
+/* ---------------------------------------------
+  Portiflios & Galleries
+------------------------------------------------ */
+
+/* Animated Overlay */
+.da-thumbs .portfolio-item a {color:#fff !important;}
+	.da-thumbs .portfolio-item a div {
+		position: absolute;
+		background: rgba(12,12,12);
+		background: rgba(12,12,12,0.7);
+		width: 100%;
+		height: 100%;
+		text-align:center;
+		overflow:hidden;
+	}
+		.da-thumbs .portfolio-item a div span {
+			position:absolute;
+			top:50%;
+			margin-top:-15px;
+			width:100%;
+			text-align:center;
+			display:block;
+			line-height:23px;
+		}
+			.da-thumbs .portfolio-item a div span h2{
+				text-transform: uppercase;
+				font-size: 22px;
+				font-family: 'Lato' ,arial,Georgia, serif;
+				font-weight:regular;
+				padding:0 15px;
+				opacity:0.9;
+			}
+			.da-thumbs .portfolio-item a div span h3{
+				text-transform: capitalize;
+				font-famliy: 'Lato' ,arial,Georgia, serif;
+				font-size: 14px;
+				padding:0 15px;
+				opacity:0.7;
+			}
+			
+	.da-thumbs .portfolio-item  a div.da-animate {
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		-ms-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;s
+	}
+	.da-slideFromTop {left: 0px;top: -100%;}
+	.da-slideFromBottom {left: 0px;top: 100%;}
+	.da-slideFromLeft {top: 0px; left: -100%;}
+	.da-slideFromRight {top: 0px;left: 100%;}
+	.da-slideTop {top: 0px;}
+	.da-slideLeft {left: 0px;}
+	
+.portfolio-item a img{
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-o-transition: 500ms;
+	transition: 500ms;
+}
+.portfolio-item a:hover img{
+	transform: scale(1.15,1.15);
+	-ms-transform: scale(1.15,1.15); /* IE 9 */
+	-webkit-transform: scale(1.15,1.15); /* Safari and Chrome */
+	-o-transform: scale(1.15,1.15); /* Opera */
+	-moz-transform: scale(1.15,1.15); /* Firefox */
+}
+
+#portfolio-content{display:none;}
+
+.portfolio-item{
+	float:left;
+	line-height:0;
+}
+	.portfolio-item a{
+		display: block;
+		position: relative; 
+		overflow: hidden;
+	}
+		.portfolio-item img{ width:100%; height:auto;}
+
+}
