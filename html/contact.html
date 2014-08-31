@@ -83,7 +83,7 @@
 
                     $("#navbar").removeClass("hidden_nav");
                     $('#navbar')
-                            .delay(420) // NOTE: fixes safari nav dropdown bug
+                            .delay(100) // NOTE: fixes safari nav dropdown bug
                             .queue(function() {
                                 $(this).css({opacity: '1'});
                                 $("#navbar").addClass("display_nav");
@@ -129,13 +129,12 @@
 
             $(window).scroll(function() {
                 var currentId = $("li.current").attr('id');
-                if ($(this).scrollTop() + 100 >= $('div[data-anchor="home"]').offset().top && $(this).scrollTop() < $('div[data-anchor="about"]').offset().top - 100) {
+                if ($(this).scrollTop() + 75 >= $('div[data-anchor="home"]').offset().top && $(this).scrollTop() < $('div[data-anchor="about"]').offset().top - 75) {
                     hide_menu();
                     if (!$('nav a#home').hasClass('active')) {
                         $('nav a#about').removeClass('active');
                         $('nav a#portfolio').removeClass('active');
                         $('nav a#contact').removeClass('active');
-                        //$('nav a#home').addClass('active');
                     }
                     if (!$('nav li#home').hasClass('current')) {
                         $('nav li#about').removeClass('current');
@@ -144,7 +143,7 @@
                         $('nav li#home').addClass('current');
                     }
                 }
-                if ($(this).scrollTop() + 100 >= $('div[data-anchor="about"]').offset().top && $(this).scrollTop() < $('div[data-anchor="portfolio"]').offset().top) {
+                if ($(this).scrollTop() + 75 >= $('div[data-anchor="about"]').offset().top && $(this).scrollTop() < $('div[data-anchor="portfolio"]').offset().top) {
                     show_menu();
                     if (!$('nav a#about').hasClass('active')) {
                         $('nav a#home').removeClass('active');
@@ -268,7 +267,6 @@
                 -webkit-transform:translateY(-50px);
                 -moz-transform:translateY(-50px);
                 transform:translateY(-50px);
-
             }
             .hidden_nav {
                 opacity:0;
@@ -604,8 +602,8 @@
         <script type="text/javascript">
             document.getElementById("loading").style.display = "block";
         </script> 
-
-        <nav class="navbar navbar-inverse navbar-fixed-top hidden_nav" id="navbar" style="z-index:999999;">
+        
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:999999;background-color: rgba(0,0,0,0.0) !important; " >
             <div class="container" style="position:relative;height:100%; z-index:-2000;margin-right:21px">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -628,7 +626,7 @@
                 </div>
             </div>
         </nav>
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:999999;background-color: rgba(0,0,0,0.0) !important; " >
+        <nav class="navbar navbar-inverse navbar-fixed-top hidden_nav" id="navbar" style="z-index:999999;">
             <div class="container" style="position:relative;height:100%; z-index:-2000;margin-right:21px">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
