@@ -83,7 +83,7 @@
 
                     $("#navbar").removeClass("hidden_nav");
                     $('#navbar')
-                            .delay(250) // NOTE: fixes safari nav dropdown bug
+                            .delay(300) // NOTE: fixes safari nav dropdown bug
                             .queue(function() {
                                 $(this).css({opacity: '1'});
                                 $("#navbar").addClass("display_nav");
@@ -195,12 +195,10 @@
                     }, 800)
                 });
                 previousId = currentId;
-                var sT = $(this).scro = llTop() + 75;
-                if ($(window).height() - sT < 600) {
-                    $("#default-nav").css("opacity", ($(window).height() - sT) / 600).show();
-                } else {
-                    $("#default-nav").css("opacity", 1).show();
-                }
+                var sT = $(this).scrollTop();
+                var page = $(".filter").height();
+                console.log(1 - (sT / page));
+                $("#default-nav").css("opacity", (0.8 - (sT / page))).show();
             });
 
             $(window).load(function() {
