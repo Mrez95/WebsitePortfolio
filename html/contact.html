@@ -204,7 +204,24 @@
             });
 
             $(window).load(function() {
-                document.getElementById("loading").style.display = "none";
+
+                $('#container')
+                        .delay(6000)
+                        .queue(function() {
+                            $(this).fadeOut(1000, function() {
+                                $("#loading").delay(600).queue(function() {
+                                    $(this).css({display: 'none'})
+                                    $(this).dequeue();
+                                });
+                            });
+                            ;
+
+                            $('html, body').css({
+                                'overflow': 'auto',
+                                'height': 'auto'
+                            })
+                            $(this).dequeue();
+                        });
 
                 if ($(window).width() > 768) {
                     $('.name-container').css(
@@ -289,18 +306,6 @@
                 -moz-transition: background 1s ease 1s !important;
                 transition: background 1s ease 1s !important;
             }
-            #loading
-            {
-                position: fixed;
-                left: 0px;
-                right: 0px;
-                top: 0px;
-                bottom: 0px;
-                background-color: white;
-                overflow:hidden;
-                z-index: 999999; /* Higher than anything else in the document */
-            }
-
             body.background {
                 background-size: 0%;
                 background-repeat:no-repeat;
@@ -488,7 +493,7 @@
                 background-attachment: scroll;
                 text-align: center;
             }
-            video {
+            video#background {
                 min-width: 100% ; min-height: 100%;
                 margin: auto;
                 width:100%;
@@ -591,16 +596,88 @@
                 width: auto; height: auto; z-index: 0;
                 background: url(../images/filter1.png) bottom center repeat;
             }
+            video#signature{
+                display:block;
+                position:relative;
+                height:90%;
+                width:90%;
+                top:35%;
+                margin:auto;
+            }
+            #container{
+                display:block;
+                position:relative;
+                height:15%;
+                width:15%;
+                top:35%;
+                margin:auto;
+            }
+            div#loading{
+                position:fixed; 
+                z-index:9999; 
+                height:220%;  
+                width:220%; 
+                overflow:hidden; 
+                top:-60%; 
+                left:-60%;
+                background-color:white;
+            }
+            .loader{
+                display:block;
+                position:relative;
+                overflow:hidden;
+                top: 36%;
+                margin:auto;
+                width: 100%;
+                height: 1px;
+                background:#f3efe6
+            }
+            .loader span {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .progress {
+                background-color: black;
+                -webkit-animation: progressBar 6s ease-in-out;
+                -webkit-animation-fill-mode:both; 
+                -moz-animation: progressBar 6s ease-in-out;
+                -moz-animation-fill-mode:both; 
+            }
+
+            @-webkit-keyframes progressBar {
+                0% { width: 0; }
+                100% { width: 100%; }
+            }
+
+            @-moz-keyframes progressBar {
+                0% { width: 0; }
+                100% { width: 100%; }
+            }
         </style>
     </head>
 
     <body class="background">
-        <div style="display: none" id="loading">&nbsp;</div>
+        <div id='loading'>
+            <div id="container"> 
+                <video id="signature" preload="auto" autoplay="true" muted="muted">
+                    <source src="../signature/Signature_21.mp4" type="video/mp4">
+                </video>
+                <div class="loader">
+                    <span><span class="progress"></span></span>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript">
             document.getElementById("loading").style.display = "block";
+            $('html, body').css({//ide scroll bar
+                'overflow': 'hidden',
+                'height': '100%'
+            })
         </script>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:999999;background-color: rgba(0,0,0,0.0) !important; " >
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:9;background-color: rgba(0,0,0,0.0) !important; " >
             <div class="container" style="position:relative;height:100%; z-index:-2000;margin-right:21px">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -648,8 +725,8 @@
         </nav>
         <!--        <div class="blurred-background " style="background-video: url('blueblur.png'); background-attachment: fixed; background-repeat: no-repeat;">-->
         <div class="filter"></div>
-        <video preload="auto" autoplay="true" loop="loop" muted="muted" >
-            <source src="../background/atmosphere_8_blur.mov" type="video/mp4">
+        <video id="background" preload="auto" autoplay="true" loop="loop" muted="muted" >
+            <source src="../background/legend_9_blur.mov" type="video/mp4">
         </video>
 
         <div id="_home" data-anchor="home" style="position:relative;height:100%; margin-bottom:0px; border-bottom:0px; background-color: rgba(0,0,0,0.3)">
@@ -806,34 +883,5 @@
                 <p class="lesstext">less</p>
             </div>
         </div>
-        <script type="text/javascript">
-            /* <![CDATA[ */
-            (function() {
-                try {
-                    var s, a, i, j, r, c, l = document.getElementsByTagName("a"), t = document.createElement("textarea");
-                    for (i = 0; l.length - i; i++) {
-                        try {
-                            a = l[i].getAttribute("href");
-                            if (a && "www.cloudflare.com/email-protection" == a.substr(7, 35)) {
-                                s = '';
-                                j = 43;
-                                r = parseInt(a.substr(j, 2), 16);
-                                for (j += 2; a.length - j && a.substr(j, 1) != 'X'; j += 2) {
-                                    c = parseInt(a.substr(j, 2), 16) ^ r;
-                                    s += String.fromCharCode(c);
-                                }
-                                j += 1;
-                                s += a.substr(j, a.length - j);
-                                t.innerHTML = s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                                l[i].setAttribute("href", "mailto:" + t.value);
-                            }
-                        } catch (e) {
-                        }
-                    }
-                } catch (e) {
-                }
-            })();
-            /* ]]> */
-        </script>
         <script type="text/javascript" src="../js/portfolio/tie-portfolio-min.js"></script>
     </body></html>
