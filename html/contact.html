@@ -197,7 +197,6 @@
                 previousId = currentId;
                 var sT = $(this).scrollTop();
                 var page = $(".filter").height();
-                console.log(1 - (sT / page));
                 $("#default-nav").css("opacity", (0.8 - (sT / page))).show();
             });
 
@@ -207,17 +206,15 @@
                         .delay(5400)
                         .queue(function() {
                             $(this).fadeOut(1000, function() {
-                                $("#loading").delay(500).queue(function() {
-                                    $(this).css({display: 'none'})
-                                    $(this).dequeue();
-                                });
-                            });
-                            ;
-
-                            $('html, body').css({
+                                
+                                $('html, body').css({
                                 'overflow': 'auto',
                                 'height': 'auto'
+                                
                             })
+                            $('#loading').fadeOut(600);
+                            });
+                            ;                            
                             $(this).dequeue();
                         });
 
@@ -638,12 +635,12 @@
             }
             .progress {
                 background-color: black;
-                -webkit-animation: progressBar 6s ease-in;
+                -webkit-animation: progressBar 7s ease-out;
                 -webkit-animation-fill-mode: both; 
-                -moz-animation: progressBar 6s ease-in;
+                -moz-animation: progressBar 7s ease-out;
                 -moz-animation-fill-mode:both; 
-                -webkit-animation-delay: 0.86s;
-                animation-delay: 0.86s;
+                -webkit-animation-delay: 2s;
+                animation-delay: 2s;
             }
 
             @-webkit-keyframes progressBar {
@@ -656,10 +653,11 @@
                 100% { width: 100%; }
             }
             #qoute{
+                
                 display:block;
                 position:relative;
                 overflow:hidden;
-                top: 80%;
+                top: 70%;
                 margin:auto;
                 width: 100%;
                 height: 100%;
@@ -696,10 +694,10 @@
             })
             $("#qoute").delay(400)
                     .queue(function() {
-                    $(this).stop().animate({
-                            top: '40%',
+                        $(this).stop().animate({
+                            top: '45%',
                             opacity: '1'
-                        }, 3000, 'swing');
+                        }, 4000, 'swing');
                         $(this).dequeue();
                     });
         </script>
