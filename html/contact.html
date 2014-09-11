@@ -112,10 +112,36 @@
                 var _width = $(".name-container").parent().outerWidth();
                 var _el_width = $(".name-container").width();
                 $(".name-container").css("left", ((_width - _el_width) / 2) + "px");
-                $(".name-container").css("top", ("19.4%"));
+                $(".name-container").css("top", ("18.5%"));
+                changeFont();
             });
+            
+            function changeFont() {
+                if($(window).width() > 1300){
+                    $(".name-container").css({
+                        width:'35%',
+                        height:'50%',
+                    });
+                    $("#nameTag").css("font-size", $('.name-container').width()/8.5 + "px");
+                    $("#typer").css("font-size", $('.name-container').width()/30 + "px");
+                    $(".logo").css("margin-bottom", "50px");
+                    $(".demo-3").css("margin-top", "35px");
+                    $(".box").css("margin", "6px");
+                }
+                else{
+                    $(".name-container").css({
+                        width: '566px',
+                        height: '457px',   
+                    });
+                    $("#nameTag").css("font-size", "70px");
+                    $("#typer").css("font-size", "22px");
+                    $(".logo").css("margin-bottom", "25px");
+                    $(".demo-3").css("margin-top", "none");
+                    $(".box").css("margin", "5px");
+                }
+            }
 
-            $('nav a').on('click', function() {
+            $('nav a').on('click', function() {                                                                                  
 
                 var scrollAnchor = $(this).attr('data-scroll'),
                         scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top - 28;
@@ -218,7 +244,7 @@
                             ;                            
                             $(this).dequeue();
                         });
-
+                changeFont();
                 if ($(window).width() > 768) {
                     $('.name-container').css(
                             {
@@ -741,12 +767,12 @@
 
                 <img src="../images/logo.svg" alt="logo" class="logo" style="position:relative; z-index:3;">
                 <hr>
-                <h1 style="position:relative; z-index:3; color:rgba(255,255,255,1);"> Eddie Tianyi <span style="font-weight: 300">Zhang</span></h1>
-                <h2 style="position:relative; z-index:3; color:rgba(255,255,255,0.8);" data-typer-targets="industrial design · front-end development,product design · front-end development,ui / ux design · front-end development, ui / ux design · mobile development, ui / ux design · web development, ui / ux design · front-end development"> ui / ux design · front-end development</h2>
+                <h1 id="nameTag" style="position:relative; z-index:3; color:rgba(255,255,255,1);"> Eddie Tianyi <span style="font-weight: 300">Zhang</span></h1>
+                <h2 id="typer" style="position:relative; z-index:3; color:rgba(255,255,255,0.8);" data-typer-targets="industrial design · front-end development,product design · front-end development,ui / ux design · front-end development, ui / ux design · mobile development, ui / ux design · web development, ui / ux design · front-end development"> ui / ux design · front-end development</h2>
                 <hr>
 
                 <section class="demo-3" style="padding-top:0px">
-                    <div class="box" style="margin:2px; z-index:3">
+                    <div class="box" style="margin:4px; z-index:3">
                         <a class="scroll" href="_______.html" style="text-decoration:none; color:rgba(255,255,255,0.7);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                             <line class="top" x1="0" y1="0" x2="360" y2="0"></line>
@@ -758,7 +784,7 @@
                         </a>
 
                     </div>
-                    <div class="box" style="margin:2px;z-index:3">
+                    <div class="box" style="margin:4px;z-index:3">
                         <a href="portfolio.html" style="text-decoration:none; color:rgba(255,255,255,0.7);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                             <line class="top" x1="0" y1="0" x2="360" y2="0"></line>
@@ -770,7 +796,7 @@
                         </a>
 
                     </div>
-                    <div class="box" style="margin:2px;z-index:3">
+                    <div class="box" style="margin:4px;z-index:3">
                         <a class="scroll" href="#footer" style="text-decoration:none; color:rgba(255,255,255,0.7);">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
