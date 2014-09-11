@@ -109,8 +109,10 @@
 
             $(window).resize(function() {
                 position_h_center("scroll_down");
-//                var tempHeight = $(window).height() - $('.container').height();
-//                $('#footer').css("height", tempHeight);
+                var _width = $(".name-container").parent().outerWidth();
+                var _el_width = $(".name-container").width();
+                $(".name-container").css("left", ((_width - _el_width) / 2) + "px");
+                $(".name-container").css("top", ("19.4%"));
             });
 
             $('nav a').on('click', function() {
@@ -235,27 +237,7 @@
                             });
                 }
 
-                // future precautions based on varying screen size (tablets/phone)
-                $(window).resize(function()
-                {
-                    if ($(window).width() > 768) {
-                        $('.name-container').css(
-                                {
-                                    position: 'absolute',
-                                    left: ($(window).width() - $('.name-container').outerWidth()) / 2,
-                                    top: (($(window).height() - $('.name-container').outerHeight()) / 2) - 10,
-                                    opacity: 1
-                                });
-                    }
-                    else {
-                        $('.name-container').css(
-                                {
-                                    position: 'relative',
-                                    top: 0,
-                                    left: 0
-                                });
-                    }
-                });
+                
 
                 // call resize` to center elements
                 $(window).resize();
@@ -654,7 +636,6 @@
                 100% { width: 100%; }
             }
             #qoute{
-                
                 display:block;
                 position:relative;
                 overflow:hidden;
@@ -696,7 +677,7 @@
             $("#qoute").delay(400)
                     .queue(function() {
                         $(this).stop().animate({
-                            top: '40%',
+                            top: '43%',
                             opacity: '1'
                         }, 3500, 'swing');
                         $(this).dequeue();
@@ -756,7 +737,7 @@
         </video>
 
         <div id="_home" data-anchor="home" style="position:relative;height:100%; margin-bottom:0px; border-bottom:0px">
-            <main class="name-container" style="position: absolute; left: 299px; top: 94px; opacity: 1; margin-top:30px">
+            <main class="name-container" style="position: absolute; left: 299px;  opacity: 1; margin-top:30px">
 
                 <img src="../images/logo.svg" alt="logo" class="logo" style="position:relative; z-index:3;">
                 <hr>
