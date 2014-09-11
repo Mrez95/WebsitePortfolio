@@ -31,8 +31,6 @@
 
                 var tempHeight = $(window).height() - $('.container').height();
                 $('#footer').css("height", tempHeight);
-                $('.blurred-background').css("height", tempHeight);
-                //$('#background').css("height", tempHeight);
                 setTimeout(function() {
                     $('[data-typer-targets]').typer();
                     $.typer.options.typerInterval = 3000;
@@ -59,10 +57,10 @@
             }
             function animate_scroll_button() {
                 $("#scroll_down").animate({
-                    bottom: "50px"
+                    bottom: "36px"
                 }, 1000, function() {
                     $("#scroll_down").animate({
-                        bottom: "20px"
+                        bottom: "16px"
                     }, {
                         duration: 2000,
                         easing: "easeOutBounce"
@@ -80,7 +78,6 @@
 
             function show_menu() {
                 if ($("#navbar").hasClass("hidden_nav")) {
-
                     $("#navbar").removeClass("hidden_nav");
                     $('#navbar')
                             .delay(250) // NOTE: fixes safari nav dropdown bug
@@ -117,16 +114,20 @@
             });
             
             function changeFont() {
-                if($(window).width() > 1300){
+                var tempHeight = $('.filter').height() - $('.container').height();
+                $('#footer').css("height", tempHeight);
+                if($(window).width() > 1400){
                     $(".name-container").css({
                         width:'35%',
                         height:'50%',
                     });
                     $("#nameTag").css("font-size", $('.name-container').width()/8.5 + "px");
-                    $("#typer").css("font-size", $('.name-container').width()/30 + "px");
-                    $(".logo").css("margin-bottom", "50px");
+                    $("#typer").css("font-size", $('.name-container').width()/26 + "px");
+                    $(".logo").css("margin-bottom", "44px");
                     $(".demo-3").css("margin-top", "35px");
                     $(".box").css("margin", "6px");
+                     
+                    //$("#footer").css("height", "100%");
                 }
                 else{
                     $(".name-container").css({
@@ -137,8 +138,9 @@
                     $("#typer").css("font-size", "22px");
                     $(".logo").css("margin-bottom", "25px");
                     $(".demo-3").css("margin-top", "none");
-                    $(".box").css("margin", "5px");
+                    $(".box").css("margin", "3px");
                 }
+                
             }
 
             $('nav a').on('click', function() {                                                                                  
@@ -262,8 +264,6 @@
                                 left: 0
                             });
                 }
-
-                
 
                 // call resize` to center elements
                 $(window).resize();
@@ -517,7 +517,7 @@
             }
             #postcard{
                 position:relative;
-                height:76%;
+                height:76% !important;
                 width:84%;
                 margin:auto;
                 //border-style:solid;
@@ -643,7 +643,7 @@
                 height: 100%;
             }
             .progress {
-                background-color: black;
+                background-color: black !important;
                 -webkit-animation: progressBar 7s ease-out;
                 -webkit-animation-fill-mode: both; 
                 -moz-animation: progressBar 7s ease-out;
@@ -711,7 +711,7 @@
         </script>
 
         <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:9;background-color: rgba(0,0,0,0.0) !important; " >
-            <div class="container" style="position:relative;;height:100%; z-index:-2;margin-right:3%;margin-left:5%">
+            <div class="container" style="position:relative;height:100%; z-index:-2;margin-right:3%;margin-left:5%">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
