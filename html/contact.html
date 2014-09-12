@@ -126,7 +126,7 @@
                     $(".logo").css("margin-bottom", "44px");
                     $(".demo-3").css("margin-top", "35px");
                     $(".box").css("margin", "6px");
-                     
+                    $(".name-container").css("margin-top", "50px"); 
                     //$("#footer").css("height", "100%");
                 }
                 else{
@@ -134,11 +134,12 @@
                         width: '566px',
                         height: '457px',   
                     });
-                    $("#nameTag").css("font-size", "70px");
+                    $("#nameTag").css("font-size", "69px");
                     $("#typer").css("font-size", "22px");
                     $(".logo").css("margin-bottom", "25px");
                     $(".demo-3").css("margin-top", "none");
-                    $(".box").css("margin", "3px");
+                    $(".box").css("margin", "2px");
+                    $(".name-container").css("margin-top", "10px");
                 }
                 
             }
@@ -234,12 +235,10 @@
                 $('#container')
                         .delay(5400)
                         .queue(function() {
-                            $(this).fadeOut(1000, function() {
-                                
+                            $(this).fadeOut(1000, function() {                               
                                 $('html, body').css({
-                                'overflow': 'auto',
-                                'height': 'auto'
-                                
+                                'overflow': 'visible',
+                                'height': 'auto'                                
                             })
                             $('#loading').fadeOut(600);
                             });
@@ -309,6 +308,7 @@
                 transition: background 1s ease 1s !important;
             }
             body.background {
+                overflow:hidden;
                 background-size: 0%;
                 background-repeat:no-repeat;
                 padding: 0px;
@@ -711,7 +711,7 @@
         </script>
 
         <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:9;background-color: rgba(0,0,0,0.0) !important; " >
-            <div class="container" style="position:relative;height:100%; z-index:-2;margin-right:3%;margin-left:5%">
+            <div class="container" style="position:relative;height:100%; z-index:-2;margin-right:1%;margin-left:4%">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -734,7 +734,7 @@
             </div>
         </nav>
         <nav class="navbar navbar-inverse navbar-fixed-top hidden_nav" id="navbar" style="z-index:999999;border-bottom:0px">
-            <div class="container" style="position:relative;height:100%; z-index:-2000;margin-right:21px">
+            <div class="container" style="position:relative;height:100%; z-index:-2000;margin-right:1%;margin-left:4%">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -818,8 +818,8 @@
 
         <!--<div id="_about" data-anchor="about" class="image" style="margin-bottom:0px"> hi HELLO2 </div>-->
         <div id="_about" data-anchor="about" class="image" style="margin-bottom:0px">
-            <div id="main-content" class="container" style=" min-width:100%">
-                <div id="portfolio-grid" class="da-thumbs isotope" style="position: relative; overflow: hidden; min-width:100%; height: 1090px; display: block;">
+            <div id="main-content" class="container" style=" min-width:100%; padding:0">
+                <div id="portfolio-grid" class="da-thumbs isotope" style="position: absolute !important; overflow: hidden; min-width:100%; height: 1090px; display: block; left:0; right: 0">
                     <div class="portfolio-item  folio-36 isotope-item" style="width: 355px; position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 0px, 0px);">
                         <a href="#pfolio/2829" rel="2829"><img width="480" height="295" src="../images/Oliver_light.png" data-lazy-type="image" data-lazy-src="../images/Oliver_light.png" class="lazy attachment-folio-thumb2 wp-post-image data-lazy-ready" alt="living_simple" style="display: inline;">
                             <div class="da-animate da-slideFromBottom" style="display: block;">
