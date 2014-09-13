@@ -32,7 +32,6 @@
                 typerColor = 'rgba(241,194,214,0.6)'; // sends to typer.js
 
                 var tempHeight = $(window).height() - $('.container').height();
-                $('#footer').css("height", tempHeight);
                 setTimeout(function() {
                     $('[data-typer-targets]').typer();
                     $.typer.options.typerInterval = 3000;
@@ -111,17 +110,18 @@
                 var _width = $(".name-container").parent().outerWidth();
                 var _el_width = $(".name-container").width();
                 $(".name-container").css("left", ((_width - _el_width) / 2) + "px");
-                $(".name-container").css("top", ("14%"));
+                $(".name-container").css("top", ("14%")); 
                 updateVisual();
             });
             
             function updateVisual() {
-                var tempHeight = $('.filter').height() - $('.container').height();
-                $('#footer').css("height", tempHeight);
+                console.log(window.innerHeight);
+                $("#footer").css("height", window.innerHeight-$("#navbar").height()-30);
                 if($(window).width() > 1400){
                     $(".name-container").css({
                         width:'35%',
                         height:'50%',
+                        marginTop:'25px'
                     });
                     $("#nameTag").css("font-size", $('.name-container').width()/8.5 + "px");
                     $("#typer").css("font-size", $('.name-container').width()/26 + "px");
@@ -131,7 +131,8 @@
                 else{
                     $(".name-container").css({
                         width: '566px',
-                        height: '457px',   
+                        height: '457px', 
+                        marginTop:'10px'
                     });
                     $("#nameTag").css("font-size", "69px");
                     $("#typer").css("font-size", "22px");
@@ -235,7 +236,7 @@
                             $(this).fadeOut(1000, function() {                               
                                 $('html, body').css({
                                 'overflow': 'visible',
-                                'height': 'auto'                                
+                                'height': 'auto',                                
                             })
                             $('#loading').fadeOut(600);
                             });
@@ -640,12 +641,12 @@
             }
             .progress {
                 background-color: black !important;
-                -webkit-animation: progressBar 5.7s ease-in;
+                -webkit-animation: progressBar 5.6s ease-in;
                 -webkit-animation-fill-mode: both; 
-                -moz-animation: progressBar 5.7s ease-in;
+                -moz-animation: progressBar 5.6s ease-in;
                 -moz-animation-fill-mode:both; 
-                -webkit-animation-delay: 1.6s;
-                animation-delay: 1.6s;
+                -webkit-animation-delay: 1.2s;
+                animation-delay: 1.2s;
             }
 
             @-webkit-keyframes progressBar {
@@ -762,7 +763,7 @@
         <div id="_home" data-anchor="home" style="position:relative;height:100%; margin-bottom:0px; border-bottom:0px">
             <main class="name-container" style="position: absolute; left: 299px;  opacity: 1">
 
-                <img src="../images/logo_white.png" alt="logo" class="logo" style="position:relative; z-index:3;margin-bottom: -25px">
+                <img src="../images/logo_white.png" alt="logo" class="logo" style="position:relative; z-index:3;margin-bottom: -10px">
                 <hr>
                 <h1 id="nameTag" style="position:relative; z-index:3; color:rgba(255,255,255,1);"> Eddie Tianyi <span style="font-weight: 300">Zhang</span></h1>
                 <h2 id="typer" style="position:relative; z-index:3; color:rgba(255,255,255,0.8);" data-typer-targets="industrial design · front-end development,product design · front-end development,ui / ux design · front-end development, ui / ux design · mobile development, ui / ux design · web development, ui / ux design · front-end development"> ui / ux design · front-end development</h2>
@@ -884,7 +885,7 @@
 
         <!--hidden-sm hidden-xs-->
 
-        <div data-anchor="contact" id ="footer" style="position:relative; margin-bottom:0px; border-bottom:0px; background-color: rgba(0,0,0,0.3)">
+        <div data-anchor="contact" id ="footer" style="position:relative; margin-bottom:0px; border-bottom:0px; padding-bottom:100px">
             <div id="contact_layer"></div>
             <div class="blurred-background" >
                 <div class="container" id="physical-footer">
