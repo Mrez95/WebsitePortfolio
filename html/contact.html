@@ -58,10 +58,10 @@
             }
             function animate_scroll_button() {
                 $("#scroll_down").animate({
-                    bottom: "45px"
+                    bottom: "35px"
                 }, 1000, function() {
                     $("#scroll_down").animate({
-                        bottom: "20px"
+                        bottom: "15px"
                     }, {
                         duration: 2000,
                         easing: "easeOutBounce"
@@ -119,8 +119,9 @@
                     $(".name-container").css({
                         width: '40%',
                         height: '50%',
-                        top: window.innerHeight*0.18
+                        top: window.innerHeight * 0.18
                     });
+                    $(".logo").css("margin-bottom","15px");
                     $("#nameTag").css("font-size", $('.name-container').width() / 8.5 + "px");
                     $("#typer").css("font-size", $('.name-container').width() / 25 + "px");
                     $(".demo-3").css("margin-top", "35px");
@@ -130,8 +131,9 @@
                     $(".name-container").css({
                         width: '566px',
                         height: '457px',
-                        top: window.innerHeight*0.12
+                        top: window.innerHeight * 0.10
                     });
+                    $(".logo").css("margin-bottom","-30px");
                     $("#nameTag").css("font-size", "69px");
                     $("#typer").css("font-size", "22px");
                     $(".demo-3").css("margin-top", "none");
@@ -300,11 +302,17 @@
                 transition-duration: 0.45s !important;
                 transition-timing-function: ease-in-out !important;
             }
-            li.current{
-                background: rgba(241,194,214,0.4) !important;
-                -webkit-transition: background 1s ease 1s !important;
-                -moz-transition: background 1s ease 1s !important;
-                transition: background 1s ease 1s !important;
+            #default-nav li.current{
+                border-bottom: 3px solid white;
+                -webkit-transition: border-color 0.7s ease 0.95s !important;
+                -moz-transition: border-color 0.7s ease 0.95s !important;
+                transition: border-color 0.7s ease 0.95s !important;
+            }
+            #navbar li.current{
+                border-bottom: 3px solid black;
+                -webkit-transition: border-color 0.6s ease 0.95s !important;
+                -moz-transition: border-color 0.6s ease 0.95s !important;
+                transition: border-color 0.6s ease 0.95s !important;
             }
             body.background {
                 overflow:hidden;
@@ -464,7 +472,7 @@
             }
             #nav-points{
                 display:inline-block;
-                color:rgba(241,194,214,1) !important;
+                color:rgba(255,255,255,0) !important;
                 opacity:1!important;
                 -webkit-transform:translateX(0px)!important;
                 -moz-transform:translateX(0px)!important;
@@ -710,7 +718,7 @@
         </script>
 
         <nav class="navbar navbar-inverse navbar-fixed-top" id="default-nav" style="border-bottom:0px; z-index:9;background-color: rgba(0,0,0,0.0) !important; " >
-            <div class="container" style="position:relative;height:100%; z-index:-2;margin-left:4%">
+            <div class="container" style="position:relative;height:100%; z-index:-2;margin-left:4%;margin-right:1%">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -723,17 +731,17 @@
                 <!--top toolbar menu-->
                 <div class="collapse navbar-collapse">
                     <ul id="nav-points" class="nav navbar-nav navbar-right">
-                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:9px;padding-right:9px">Home</a></li>
-                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:9px;padding-right:9px">About</a></li>
-                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:9px;padding-right:9px">Portfolio</a></li>
+                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:6px;padding-right:6px;">Home</a></li>
+                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:6px;padding-right:6px">About</a></li>
+                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:6px;padding-right:6px">Portfolio</a></li>
                         <!--CHANGE: make it embedded emailing-->
-                        <li id="contact"><a id="contact" href="#footer" style="padding-left:9px;padding-right:9px">Contact</a></li>
+                        <li id="contact"><a id="contact" href="#footer" style="padding-left:6px;padding-right:6px">Contact</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <nav class="navbar navbar-inverse navbar-fixed-top hidden_nav" id="navbar" style="z-index:999999;border-bottom:0px">
-            <div class="container" style="position:relative;height:100%; z-index:-2000;margin-left:4%">
+            <div class="container" style="position:relative;height:100%; z-index:-2000;margin-left:4%;margin-right:1%">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -747,9 +755,9 @@
                 <!--top toolbar menu-->
                 <div class="collapse navbar-collapse">
                     <ul id="nav-points" class="nav navbar-nav navbar-right">
-                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:9px;padding-right:9px;color:black">Home</a></li>
-                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:9px;padding-right:9px;color:black">About</a></li>
-                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:9px;padding-right:9px;color:black">Portfolio</a></li>
+                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:6px;padding-right:6px;color:black">Home</a></li>
+                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:6px;padding-right:6px;color:black">About</a></li>
+                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:6px;padding-right:6px;color:black">Portfolio</a></li>
                         <!--CHANGE: make it embedded emailing-->
                         <li id="contact"><a id="contact" href="#footer" style="padding-left:9px;padding-right:9px;color:black">Contact</a></li>
                     </ul>
@@ -764,7 +772,7 @@
 
         <div id="_home" data-anchor="home" style="position:relative;height:100%; margin-bottom:0px; border-bottom:0px">
             <main class="name-container" style="position: absolute; left: 299px;  opacity: 1">
-                <img src="../images/logo_white.png" alt="logo" class="logo" style="position:relative; z-index:3;margin-bottom: -10px">
+                <img src="../images/logo_white.png" alt="logo" class="logo" style="position:relative; z-index:3">
                 <hr>
                 <h1 id="nameTag" style="position:relative; z-index:3; color:rgba(255,255,255,1);"> Eddie Tianyi <span style="font-weight: 300">Zhang</span></h1>
                 <h2 id="typer" style="position:relative; z-index:3; color:rgba(255,255,255,0.8);" data-typer-targets="industrial design · front-end development,product design · front-end development,ui / ux design · front-end development, ui / ux design · mobile development, ui / ux design · web development, ui / ux design · front-end development"> ui / ux design · front-end development</h2>
