@@ -12,6 +12,7 @@
         <link href="../css/fontello.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../images/favicon (1).ico" type="image/x-icon">
         <link rel="icon" href="../images/favicon (1).ico" type="image/x-icon">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -49,6 +50,63 @@
                     }
                     ;
                 }
+                $(".fa-github")
+                        .on("mouseenter", function() {
+                            $("#custom-stamp").attr("src", "../images/stamps/github.png");
+                            $(this).css({
+                                color: "rgba(182,156,255,0.4)",
+                                transition: "color ease 0.4s"
+                            })
+                        })
+
+                $(".fa-facebook-square")
+                        .on("mouseenter", function() {
+                            $("#custom-stamp").attr("src", "../images/stamps/facebook.png");
+                            $(this).css({
+                                color: "rgba(89,119,204,0.4)",
+                                transition: "color ease 0.4s"
+                            });
+                        })
+
+                $(".fa-linkedin-square")
+                        .on("mouseenter", function() {
+                            $("#custom-stamp").attr("src", "../images/stamps/linkedin.png");
+                            $(this).css({
+                                color: "rgba(0,168,255,0.4)",
+                                transition: "color ease 0.4s"})
+                        })
+
+                $(".fa-envelope-square")
+                        .on("mouseenter", function() {
+                            $("#custom-stamp").attr("src", "../images/stamps/email.png");
+                            $(this).css({
+                                color: "rgba(127,224,80,0.4)",
+                                transition: "color ease 0.4s"
+                            })
+                        })
+                $(".fa-envelope-square")
+                        .on("mouseenter", function() {
+                            $("#custom-stamp").attr("src", "../images/stamps/email.png");
+                            $(this).css({
+                                color: "rgba(127,224,80,0.4)",
+                                transition: "color ease 0.4s"
+                            })
+                        })
+                $(".fa-paper-plane")
+                        .on("mouseenter", function() {
+                            $("#custom-stamp").attr("src", "../images/stamps/choice.png");
+                            $(this).css({
+                                color: "rgba(241,194,214,0.4)",
+                                transition: "color ease 0.4s"
+                            })
+                        })
+                $(".fa").on("mouseleave", function() {
+                    $(this).css({
+                        color: "rgba(255,255,255,0.5)",
+                        transition: "color ease 0.5s"
+                    })
+                });
+
             });
 
             function position_h_center(el) {
@@ -114,14 +172,15 @@
             });
 
             function updateVisual() {
-                $("#footer").css("height", window.innerHeight - $("#navbar").height())
+                $("#footer").css("height", window.innerHeight - $("#navbar").height());
+                $("#icon-wrapper").css("width", $("#about-me").width());
                 if (window.innerHeight > 800) {
                     $(".name-container").css({
                         width: '40%',
                         height: '50%',
                         top: window.innerHeight * 0.18
                     });
-                    $(".logo").css("margin-bottom","15px");
+                    $(".logo").css("margin-bottom", "15px");
                     $("#nameTag").css("font-size", $('.name-container').width() / 8.5 + "px");
                     $("#typer").css("font-size", $('.name-container').width() / 25 + "px");
                     $(".demo-3").css("margin-top", "35px");
@@ -133,7 +192,7 @@
                         height: '457px',
                         top: window.innerHeight * 0.10
                     });
-                    $(".logo").css("margin-bottom","-30px");
+                    $(".logo").css("margin-bottom", "-30px");
                     $("#nameTag").css("font-size", "69px");
                     $("#typer").css("font-size", "22px");
                     $(".demo-3").css("margin-top", "none");
@@ -686,6 +745,18 @@
                 font-size: 13pt;
                 font-variant: small-caps; 
             }
+            .fa{
+                font-size:37px;
+                margin:8%;
+                width:9%;
+                cursor:pointer;
+                color: rgba(255,255,255,0.5);
+            }
+            #icon-wrapper{
+                position:absolute;
+                bottom:15;
+                height:40px;
+            }
         </style>
     </head>
 
@@ -731,11 +802,11 @@
                 <!--top toolbar menu-->
                 <div class="collapse navbar-collapse">
                     <ul id="nav-points" class="nav navbar-nav navbar-right">
-                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:6px;padding-right:6px;">Home</a></li>
-                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:6px;padding-right:6px">About</a></li>
-                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:6px;padding-right:6px">Portfolio</a></li>
+                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:5px;padding-right:5px;">Home</a></li>
+                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:5px;padding-right:5px">About</a></li>
+                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:5px;padding-right:5px">Portfolio</a></li>
                         <!--CHANGE: make it embedded emailing-->
-                        <li id="contact"><a id="contact" href="#footer" style="padding-left:6px;padding-right:6px">Contact</a></li>
+                        <li id="contact"><a id="contact" href="#footer" style="padding-left:5px;padding-right:5px">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -755,11 +826,11 @@
                 <!--top toolbar menu-->
                 <div class="collapse navbar-collapse">
                     <ul id="nav-points" class="nav navbar-nav navbar-right">
-                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:6px;padding-right:6px;color:black">Home</a></li>
-                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:6px;padding-right:6px;color:black">About</a></li>
-                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:6px;padding-right:6px;color:black">Portfolio</a></li>
+                        <li class="current" id="home"><a href="#_home" id="home" style="padding-left:5px;padding-right:5px;color:black">Home</a></li>
+                        <li id="about"><a href="#_about" id="about" data-scroll="about" style="padding-left:5px;padding-right:5px;color:black">About</a></li>
+                        <li id="portfolio"><a href="#_portfolio" id="portfolio" data-scroll="portfolio" style="padding-left:5px;padding-right:5px;color:black">Portfolio</a></li>
                         <!--CHANGE: make it embedded emailing-->
-                        <li id="contact"><a id="contact" href="#footer" style="padding-left:9px;padding-right:9px;color:black">Contact</a></li>
+                        <li id="contact"><a id="contact" href="#footer" style="padding-left:5px;padding-right:5px;color:black">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -901,7 +972,8 @@
                     <div id="postcard">
                         <div id="inner-border">
                             <div id="about-me">
-                                <h4 style="text-align:center">Contact Me!</h4>
+                                <h4 style="text-align:center">Contact Me! </h4>
+                                <div id="icon-wrapper"><i class="fa fa-github"></i><i class="fa fa-facebook-square"></i><i class="fa fa-linkedin-square"></i><i class="fa fa-envelope-square"></i></div>
                             </div>
                             <div id="contact-me">
                                 <form name="input" action="../php/contact.php" method="post">
@@ -910,6 +982,8 @@
                                     Message: <input type ="text" name="message"><br>
                                     <input type="submit" value="Send Greetings">
                                 </form>
+                                <i class="fa fa-paper-plane"></i>
+                                <img id="custom-stamp" src="../images/stamps/default.png" style="height:60%">
                             </div>
                         </div>
                     </div>
@@ -918,7 +992,7 @@
         </div>
         <div id="moretext-mobile" class="visible-xs visible-sm hidden">
             <div>
-                <p class="mobile-subtext"></p>
+                <p class="mobile-subtext"></p>ez95@
                 <p class="lesstext">less</p>
             </div>
         </div>
