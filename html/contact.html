@@ -95,10 +95,6 @@
                 $(".fa-paper-plane")
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/choice.png");
-                            $(this).css({
-                                color: "rgba(241,194,214,0.4)",
-                                transition: "color ease 0.4s"
-                            })
                         })
                 $(".fa").on("mouseleave", function() {
                     $(this).css({
@@ -746,17 +742,52 @@
                 font-variant: small-caps; 
             }
             .fa{
-                font-size:37px;
+                font-size:39px;
                 margin:8%;
                 width:9%;
                 cursor:pointer;
-                color: rgba(255,255,255,0.5);
+                color: rgba(255,255,255,0.4);
+            }
+            .fa-paper-plane{
+                font-size:32px;
+                margin:5%;
+                width:18%;
+                cursor:pointer;
+                color: rgba(255,255,255,0.4);
+                -webkit-transition: color ease 0.5s;
+                -moz-transition: color ease 0.5s;
+                transition: color ease 0.5s;
             }
             #icon-wrapper{
                 position:absolute;
                 bottom:15;
                 height:40px;
             }
+            #submit{
+                border: 2px solid rgba(255,255,255,0.5);
+                border-radius: 10px;  
+                width: 30%;
+                -webkit-transition: color ease 0.5s,border-color ease 0.5s !important;
+                -moz-transition: color ease 0.5s,border-color ease 0.5s !important;
+                transition: color ease 0.5s, border-color ease 0.5s !important;
+            }          
+            #submit:hover{
+                cursor: pointer;
+                color:rgba(241,194,214,0.4);
+                border: 2px solid rgba(241,194,214,0.4);  
+                transition: color ease 0.4s;
+                -webkit-transition: color ease 0.5s;
+                -moz-transition: color ease 0.5s;
+                transition: color ease 0.5s;
+            } 
+            #submit:hover .fa-paper-plane{
+                cursor: pointer;
+                color: rgba(241,194,214,0.4) !important;
+                transition: color ease-in-out 0.5s;
+                -webkit-transition: color ease 0.5s;
+                -moz-transition: color ease 0.5s;
+            } 
+
         </style>
     </head>
 
@@ -982,8 +1013,10 @@
                                     Message: <input type ="text" name="message"><br>
                                     <input type="submit" value="Send Greetings">
                                 </form>
-                                <i class="fa fa-paper-plane"></i>
-                                <img id="custom-stamp" src="../images/stamps/default.png" style="height:60%">
+                                <div id="submit">
+                                    Send Greetings <i class="fa fa-paper-plane"></i>
+                                </div>
+                                <img id="custom-stamp" src="../images/stamps/default.png" style="height:40%;position:absolute;top:11%;right:4%">
                             </div>
                         </div>
                     </div>
