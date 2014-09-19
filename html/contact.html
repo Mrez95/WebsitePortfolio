@@ -13,6 +13,7 @@
         <link rel="shortcut icon" href="../images/favicon (1).ico" type="image/x-icon">
         <link rel="icon" href="../images/favicon (1).ico" type="image/x-icon">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
         <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -54,7 +55,7 @@
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/github.png");
                             $(this).css({
-                                color: "rgba(182,156,255,0.4)",
+                                color: "rgba(182,156,255,0.5)",
                                 transition: "color ease 0.4s"
                             })
                         })
@@ -63,7 +64,7 @@
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/facebook.png");
                             $(this).css({
-                                color: "rgba(89,119,204,0.4)",
+                                color: "rgba(89,119,204,0.5)",
                                 transition: "color ease 0.4s"
                             });
                         })
@@ -72,7 +73,7 @@
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/linkedin.png");
                             $(this).css({
-                                color: "rgba(0,168,255,0.4)",
+                                color: "rgba(0,168,255,0.5)",
                                 transition: "color ease 0.4s"})
                         })
 
@@ -80,7 +81,7 @@
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/email.png");
                             $(this).css({
-                                color: "rgba(127,224,80,0.4)",
+                                color: "rgba(127,224,80,0.5)",
                                 transition: "color ease 0.4s"
                             })
                         })
@@ -88,17 +89,38 @@
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/email.png");
                             $(this).css({
-                                color: "rgba(127,224,80,0.4)",
+                                color: "rgba(127,224,80,0.5)",
                                 transition: "color ease 0.4s"
                             })
                         })
-                $(".fa-paper-plane")
+                $("#submit")
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/choice.png");
                         })
+                $("#client")
+                        .on("focus", function() {
+                            $(this).attr("placeholder", "Your Name");
+                        })
+                        .on("focusout", function() {
+                            $(this).attr("placeholder", "");
+                        })
+                $("#return")
+                        .on("focus", function() {
+                            $(this).attr("placeholder", "Your Email");
+                        })
+                        .on("focusout", function() {
+                            $(this).attr("placeholder", "");
+                        })
+                $("#message")
+                        .on("focus", function() {
+                            $(this).attr("placeholder", "Let's Chat!");
+                        })
+                        .on("focusout", function() {
+                            $(this).attr("placeholder", "");
+                        })
                 $(".fa").on("mouseleave", function() {
                     $(this).css({
-                        color: "rgba(255,255,255,0.5)",
+                        color: "rgba(255,255,255,0.4)",
                         transition: "color ease 0.5s"
                     })
                 });
@@ -168,6 +190,13 @@
             });
 
             function updateVisual() {
+                $("#client").css("width", $("#contact-me").width()*0.55);
+                $("#return").css("width", $("#contact-me").width()*0.4);
+                $("#message").css("width", $("#contact-me").width()*0.715);
+                $("#message-con").css("width", $("#contact-me").width()*0.43);
+                $("#message-con-2").css("width", $("#message-con").width());
+                $("#message-con-3").css("width", $("#message-con").width());
+                $("#message-con-4").css("width", $("#message-con").width());
                 $("#footer").css("height", window.innerHeight - $("#navbar").height());
                 $("#icon-wrapper").css("width", $("#about-me").width());
                 if (window.innerHeight > 800) {
@@ -743,10 +772,16 @@
             }
             .fa{
                 font-size:39px;
-                margin:8%;
+                margin:6%;
                 width:9%;
                 cursor:pointer;
                 color: rgba(255,255,255,0.4);
+            }
+            .fa-envelope-square{
+                margin-right:14%;
+            }
+            .fa-github{
+                margin-left:14%;
             }
             .fa-paper-plane{
                 font-size:32px;
@@ -787,6 +822,41 @@
                 -webkit-transition: color ease 0.5s;
                 -moz-transition: color ease 0.5s;
             } 
+            .sender{
+                font-family: 'Rock Salt', cursive;
+            }
+            input{
+                background-color:rgba(0,0,0,0);
+                color: rgba(255,255,255,0.6);
+                border-color: rgba(255,255,255,0.2);
+                border-top:0px;
+                border-left:0px;
+                border-right:0px;
+            }
+            input:focus { 
+                outline: 0;
+                color: rgba(255,255,255,0.6);
+            }
+            input::-webkit-input-placeholder { /* WebKit browsers */
+                color:    rgba(255,255,255,0.3);
+                font-size:15px;
+                line-height:  normal;
+            }
+            input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color:    rgba(255,255,255,0.3);
+                font-size:15px;
+                line-height:  normal;
+            }
+            input::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color:    rgba(255,255,255,0.3);
+                font-size:15px;
+                line-height:  normal;
+            }
+            input:-ms-input-placeholder { /* Internet Explorer 10+ */
+                color:    rgba(255,255,255,0.3);
+                font-size:15px;
+                line-height:  normal;
+            }
 
         </style>
     </head>
@@ -1007,27 +1077,35 @@
                                 <div id="icon-wrapper"><i class="fa fa-github"></i><i class="fa fa-facebook-square"></i><i class="fa fa-linkedin-square"></i><i class="fa fa-envelope-square"></i></div>
                             </div>
                             <div id="contact-me">
-                                <form name="input" action="../php/contact.php" method="post">
-                                    From: <input type="text" name="client"><br>
-                                    Return Address: <input type="text" name="address"><br>
-                                    Message: <input type ="text" name="message"><br>
-                                    <input type="submit" value="Send Greetings">
-                                </form>
-                                <div id="submit">
-                                    Send Greetings <i class="fa fa-paper-plane"></i>
+                                <div class="sender" style="margin:4%">
+                                    <p>To: &nbsp Eddie Zhang</p><br>
+
+                                    <form name="input" action="../php/contact.php" method="post" >
+                                        From: &nbsp<input type="text" name="client" id='client'><br>
+                                        Return Address: &nbsp<input type="text" name="address" id='return'><br>
+                                        Message: &nbsp<input type ="text" name="message" id='message' style="overflow:hidden" ><br>
+                                        <input type ="text" name="message" id='message-con'>
+                                        <input type ="text" name="message" id='message-con-2'>
+                                        <input type ="text" name="message" id='message-con-3'>
+                                        <input type ="text" name="message" id='message-con-4'>
+                                    </form>
+
+
+                                    <div id="submit">
+                                        Send Greetings <i class="fa fa-paper-plane"></i>
+                                    </div>
+                                    <img id="custom-stamp" src="../images/stamps/default.png" style="height:40%;position:absolute;top:12.4%;right:4%">
                                 </div>
-                                <img id="custom-stamp" src="../images/stamps/default.png" style="height:40%;position:absolute;top:11%;right:4%">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="moretext-mobile" class="visible-xs visible-sm hidden">
-            <div>
-                <p class="mobile-subtext"></p>ez95@
-                <p class="lesstext">less</p>
+            <div id="moretext-mobile" class="visible-xs visible-sm hidden">
+                <div>
+                    <p class="mobile-subtext"></p>
+                    <p class="lesstext">less</p>
+                </div>
             </div>
-        </div>
-        <script type="text/javascript" src="../js/portfolio/tie-portfolio-min.js"></script>
+            <script type="text/javascript" src="../js/portfolio/tie-portfolio-min.js"></script>
     </body></html>
