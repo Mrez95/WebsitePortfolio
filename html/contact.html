@@ -190,13 +190,13 @@
             });
 
             function updateVisual() {
-                $("#client").css("width", $("#contact-me").width()*0.55);
-                $("#return").css("width", $("#contact-me").width()*0.4);
-                $("#message").css("width", $("#contact-me").width()*0.715);
-                $("#message-con").css("width", $("#contact-me").width()*0.43);
-                $("#message-con-2").css("width", $("#message-con").width());
-                $("#message-con-3").css("width", $("#message-con").width());
-                $("#message-con-4").css("width", $("#message-con").width());
+//$("#client").css("width", $("#contact-me").width() * 0.5);
+//                    $("#return").css("width", $("#contact-me").width() * 0.35);
+//                    $("#message").css("width", $("#contact-me").width() * 0.715);
+//                    $("#message-con").css("width", $("#contact-me").width() * 0.43);
+//                    $("#message-con-2").css("width", $("#message-con").width());
+//                    $("#message-con-3").css("width", $("#message-con").width());
+//                    $("#message-con-4").css("width", $("#message-con").width());
                 $("#footer").css("height", window.innerHeight - $("#navbar").height());
                 $("#icon-wrapper").css("width", $("#about-me").width());
                 if (window.innerHeight > 800) {
@@ -210,6 +210,7 @@
                     $("#typer").css("font-size", $('.name-container').width() / 25 + "px");
                     $(".demo-3").css("margin-top", "35px");
                     $(".box").css("margin", "6px");
+
                 }
                 else {
                     $(".name-container").css({
@@ -771,7 +772,7 @@
                 font-variant: small-caps; 
             }
             .fa{
-                font-size:39px;
+                font-size:35px;
                 margin:6%;
                 width:9%;
                 cursor:pointer;
@@ -784,24 +785,27 @@
                 margin-left:14%;
             }
             .fa-paper-plane{
-                font-size:32px;
+                font-size:30px;
                 margin:5%;
                 width:18%;
                 cursor:pointer;
-                color: rgba(255,255,255,0.4);
+                color: rgba(255,255,255,0.5);
                 -webkit-transition: color ease 0.5s;
                 -moz-transition: color ease 0.5s;
                 transition: color ease 0.5s;
             }
             #icon-wrapper{
                 position:absolute;
-                bottom:15;
+                bottom:-10%;
+                right:1%;
                 height:40px;
             }
             #submit{
-                border: 2px solid rgba(255,255,255,0.5);
+                border: 2px solid rgba(255,255,255,0.4);
                 border-radius: 10px;  
                 width: 30%;
+                line-height: normal;
+                color: rgba(255,255,255,0.6);
                 -webkit-transition: color ease 0.5s,border-color ease 0.5s !important;
                 -moz-transition: color ease 0.5s,border-color ease 0.5s !important;
                 transition: color ease 0.5s, border-color ease 0.5s !important;
@@ -817,7 +821,7 @@
             } 
             #submit:hover .fa-paper-plane{
                 cursor: pointer;
-                color: rgba(241,194,214,0.4) !important;
+                color: rgba(241,194,214,0.5) !important;
                 transition: color ease-in-out 0.5s;
                 -webkit-transition: color ease 0.5s;
                 -moz-transition: color ease 0.5s;
@@ -857,7 +861,23 @@
                 font-size:15px;
                 line-height:  normal;
             }
-
+            #client{
+                width:50%;
+                margin-bottom:2%;
+            }
+            #return{
+                width:50%;
+                max-width: 420px;
+                margin-bottom:2%;
+            }
+            #message{
+                width:75%;
+                margin-bottom:1%;
+            }
+            #message-con,#message-con-2,#message-con-3,#message-con-4{
+                width:44%;
+                margin-bottom:1%;
+            }
         </style>
     </head>
 
@@ -1069,43 +1089,50 @@
             <div id="contact_layer"></div>
             <div class="blurred-background" >
                 <div class="container" id="physical-footer">
-                    <h4 class="text-center margin-top-lg" style="position:relative;margin-top:3%;margin-bottom:5%; z-index:4">Intrigued?</h4>
+                    <h4 class="text-center margin-top-lg" style="position:relative;margin-top:3%;margin-bottom:3%; z-index:4">Intrigued?</h4>
                     <div id="postcard">
                         <div id="inner-border">
                             <div id="about-me">
                                 <h4 style="text-align:center">Contact Me! </h4>
-                                <div id="icon-wrapper"><i class="fa fa-github"></i><i class="fa fa-facebook-square"></i><i class="fa fa-linkedin-square"></i><i class="fa fa-envelope-square"></i></div>
+
                             </div>
                             <div id="contact-me">
                                 <div class="sender" style="margin:4%">
-                                    <p>To: &nbsp Eddie Zhang</p><br>
+                                    <div>
+                                        <p>To: &nbsp Eddie Zhang</p><br>
 
-                                    <form name="input" action="../php/contact.php" method="post" >
-                                        From: &nbsp<input type="text" name="client" id='client'><br>
-                                        Return Address: &nbsp<input type="text" name="address" id='return'><br>
-                                        Message: &nbsp<input type ="text" name="message" id='message' style="overflow:hidden" ><br>
-                                        <input type ="text" name="message" id='message-con'>
-                                        <input type ="text" name="message" id='message-con-2'>
-                                        <input type ="text" name="message" id='message-con-3'>
-                                        <input type ="text" name="message" id='message-con-4'>
-                                    </form>
+                                        <form name="input" action="../php/contact.php" method="post" >
+                                            <div style="position:absolute;top:40%">
+                                                From: &nbsp<input type="text" name="client" id='client'><br>
+                                                Return Address: &nbsp<input type="text" name="address" id='return'><br>
 
+                                                Message: &nbsp<input type ="text" name="message" id='message' style="overflow:hidden" ><br>
+                                                <input type ="text" name="message" id='message-con'>
+                                                <input type ="text" name="message" id='message-con-2'>
+                                                <input type ="text" name="message" id='message-con-3'>
+                                                <input type ="text" name="message" id='message-con-4'>
+                                            </div>
+                                        </form>
 
-                                    <div id="submit">
-                                        Send Greetings <i class="fa fa-paper-plane"></i>
+                                        <div>
+                                            <div id="submit" style="width:210px;position:absolute;bottom:-17%">
+                                                <div style="width:135px;position:relative;margin-left:auto;margin-right:auto;margin-top:7px;margin-bottom:8px">
+                                                    Say Hello! <i class="fa fa-paper-plane"></i></div>
+                                            </div>
+                                            <div id="icon-wrapper"><i class="fa fa-github"></i><i class="fa fa-facebook-square"></i><i class="fa fa-linkedin-square"></i><i class="fa fa-envelope-square"></i></div>
+                                        </div>
+                                        <img id="custom-stamp" src="../images/stamps/default.png" style="height:40%;position:absolute;top:12%;right:4%">
                                     </div>
-                                    <img id="custom-stamp" src="../images/stamps/default.png" style="height:40%;position:absolute;top:12.4%;right:4%">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="moretext-mobile" class="visible-xs visible-sm hidden">
-                <div>
-                    <p class="mobile-subtext"></p>
-                    <p class="lesstext">less</p>
+                <div id="moretext-mobile" class="visible-xs visible-sm hidden">
+                    <div>
+                        <p class="mobile-subtext"></p>
+                        <p class="lesstext">less</p>
+                    </div>
                 </div>
-            </div>
-            <script type="text/javascript" src="../js/portfolio/tie-portfolio-min.js"></script>
-    </body></html>
+                <script type="text/javascript" src="../js/portfolio/tie-portfolio-min.js"></script>
+                </body></html>
