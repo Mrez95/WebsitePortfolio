@@ -29,6 +29,7 @@
             var previousId = "";
             /* <![CDATA[ */
             var tie = {};
+            var wordGap = 11;
             /* ]]> */
             $(document).ready(function() {
                 typerColor = 'rgba(241,194,214,0.6)'; // sends to typer.js
@@ -51,6 +52,45 @@
                     }
                     ;
                 }
+                $('input').keyup(function() {
+                    if ($(this).val().length == $(this).attr("maxlength")) {
+                        $(this).next().focus();
+                    }
+                });
+                $("#submit")
+                        .on("click", function() {
+                            $.notify.addStyle('postage', {
+                                html: "<div>&#10527;<span data-notify-text/>&#10528;</div>",
+                                classes: {
+                                    base: {
+                                        "white-space": "nowrap",
+                                        "background-color": "white",
+                                        "padding": "25px"
+                                    },
+                                    postage: {
+                                        "color": "black",
+                                        "background-color": "white"
+                                    }
+                                }
+                            });
+                            $(".navbar-collapse").delay(500).
+                                    queue(function() {
+                                        $(this).notify("Let's keep in touch!", {
+                                            style: 'postage',
+                                            elementPosition: 'bottom centre',
+                                            showDuration: 450,
+                                            hideDuration: 200,
+                                            autoHideDelay: 2400,
+                                            arrowShow: false,
+                                            showAnimation: 'slideDown',
+                                            hideAnimation: 'slideUp',
+                                            className: 'success',
+                                            gap: 0
+                                        });
+                                        $(this).dequeue();
+                                    });
+
+                        })
                 $(".fa-github")
                         .on("mouseenter", function() {
                             $("#custom-stamp").attr("src", "../images/stamps/github.png");
@@ -58,6 +98,7 @@
                                 color: "rgba(182,156,255,0.5)",
                                 transition: "color ease 0.4s"
                             })
+
                         })
 
                 $(".fa-facebook-square")
@@ -111,7 +152,7 @@
                         .on("focusout", function() {
                             $(this).attr("placeholder", "");
                         })
-                $("#message")
+                $("#message-con-0")
                         .on("focus", function() {
                             $(this).attr("placeholder", "Let's Chat!");
                         })
@@ -197,6 +238,11 @@
 //                    $("#message-con-2").css("width", $("#message-con").width());
 //                    $("#message-con-3").css("width", $("#message-con").width());
 //                    $("#message-con-4").css("width", $("#message-con").width());
+                $("#message-con-0").attr("maxlength", Math.round($("#message-con-0").width() / wordGap));
+                $("#message-con-1").attr("maxlength", Math.round($("#message-con-1").width() / wordGap));
+                $("#message-con-2").attr("maxlength", Math.round($("#message-con-2").width() / wordGap));
+                $("#message-con-3").attr("maxlength", Math.round($("#message-con-3").width() / wordGap));
+                $("#message-con-4").attr("maxlength", Math.round($("#message-con-4").width() / wordGap));
                 $("#footer").css("height", window.innerHeight - $("#navbar").height());
                 $("#icon-wrapper").css("width", $("#about-me").width());
                 if (window.innerHeight > 800) {
@@ -796,7 +842,7 @@
             }
             #icon-wrapper{
                 position:absolute;
-                bottom:-10%;
+                bottom:-9.5%;
                 right:1%;
                 height:40px;
             }
@@ -862,21 +908,19 @@
                 line-height:  normal;
             }
             #client{
-                width:50%;
-                margin-bottom:2%;
+                width:38%;
+                margin-bottom:2px;
             }
             #return{
-                width:50%;
+                width:43%;
                 max-width: 420px;
-                margin-bottom:2%;
+                margin-bottom:2px;
             }
-            #message{
-                width:75%;
-                margin-bottom:1%;
+            #message-con-0{
+                width:74%;
             }
-            #message-con,#message-con-2,#message-con-3,#message-con-4{
+            #message-con-1,#message-con-2,#message-con-3,#message-con-4{
                 width:44%;
-                margin-bottom:1%;
             }
         </style>
     </head>
@@ -1099,28 +1143,29 @@
                             <div id="contact-me">
                                 <div class="sender" style="margin:4%">
                                     <div>
-                                        <p>To: &nbsp Eddie Zhang</p><br>
+                                        <p>To: &nbsp Eddie Zhang</p>
 
                                         <form name="input" action="../php/contact.php" method="post" >
-                                            <div style="position:absolute;top:40%">
+                                            <div style="position:absolute;top:38%">
                                                 From: &nbsp<input type="text" name="client" id='client'><br>
                                                 Return Address: &nbsp<input type="text" name="address" id='return'><br>
 
-                                                Message: &nbsp<input type ="text" name="message" id='message' style="overflow:hidden" ><br>
-                                                <input type ="text" name="message" id='message-con'>
+                                                Message: &nbsp
+                                                <input type ="text" name="message" id='message-con-0'> 
+                                                <input type ="text" name="message" id='message-con-1'>
                                                 <input type ="text" name="message" id='message-con-2'>
                                                 <input type ="text" name="message" id='message-con-3'>
                                                 <input type ="text" name="message" id='message-con-4'>
                                             </div>
                                         </form>
 
-                                        <div>
-                                            <div id="submit" style="width:210px;position:absolute;bottom:-17%">
-                                                <div style="width:135px;position:relative;margin-left:auto;margin-right:auto;margin-top:7px;margin-bottom:8px">
-                                                    Say Hello! <i class="fa fa-paper-plane"></i></div>
-                                            </div>
-                                            <div id="icon-wrapper"><i class="fa fa-github"></i><i class="fa fa-facebook-square"></i><i class="fa fa-linkedin-square"></i><i class="fa fa-envelope-square"></i></div>
+
+                                        <div id="submit" style="width:210px;position:absolute;bottom:-17%">
+                                            <div style="width:135px;position:relative;margin-left:auto;margin-right:auto;margin-top:7px;margin-bottom:8px">
+                                                Say Hello! <i class="fa fa-paper-plane"></i></div>
                                         </div>
+                                        <div id="icon-wrapper"><i class="fa fa-github"></i><i class="fa fa-facebook-square"></i><i class="fa fa-linkedin-square"></i><i class="fa fa-envelope-square"></i></div>
+
                                         <img id="custom-stamp" src="../images/stamps/default.png" style="height:40%;position:absolute;top:12%;right:4%">
                                     </div>
                                 </div>
@@ -1135,4 +1180,5 @@
                     </div>
                 </div>
                 <script type="text/javascript" src="../js/portfolio/tie-portfolio-min.js"></script>
+                <script type="text/javascript" src="../js/notify.js"></script>
                 </body></html>
