@@ -3,7 +3,7 @@ Personal Website
 
 Personal website portfolio designed and implemented from scratch using HTML5, CSS3 and JQuery techniques
 
-![alt='bazhanga.com/images/loading_screen.png'](bazhanga.com/images/loading_screen.png)
+![alt='http://www.bazhanga.com/images/loading_screen.png'](http://www.bazhanga.com/images/loading_screen.png)
 
 Features
 ------------
